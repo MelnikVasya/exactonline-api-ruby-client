@@ -38,6 +38,7 @@ module Elmas
       headers["Content-Type"] = content_type
       headers["Accept"] = content_type
       headers["Authorization"] = "Bearer #{access_token}" if access_token
+      headers["Prefer"] = "return=representation"
       headers
     end
 

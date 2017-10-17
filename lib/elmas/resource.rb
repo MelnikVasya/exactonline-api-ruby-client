@@ -59,13 +59,20 @@ module Elmas
     end
 
     def save
-      attributes_to_submit = sanitize
-      if valid?
-        return @response = Elmas.post(base_path, params: attributes_to_submit) unless id?
-        return @response = Elmas.put(basic_identifier_uri, params: attributes_to_submit)
+      @response =
+        if valid?
+          perform_request_for_save
+        else
+          Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}")
+          Elmas::Response.new(Faraday::Response.new(status: 400, body: "Invalid Request"))
+        end
+    end
+
+    def perform_request_for_save
+      if id?
+        Elmas.put(basic_identifier_uri, params: sanitize)
       else
-        Elmas.error("Invalid Resource #{self.class.name}, attributes: #{@attributes.inspect}")
-        Elmas::Response.new(Faraday::Response.new(status: 400, body: "Invalid Request"))
+        Elmas.post(base_path, params: sanitize)
       end
     end
 

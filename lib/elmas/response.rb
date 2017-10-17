@@ -19,7 +19,7 @@ module Elmas
     end
 
     def parsed
-      Parser.new(body)
+      response.env.method == :put ? Parser.new('{}') : Parser.new(body)
     end
 
     def result

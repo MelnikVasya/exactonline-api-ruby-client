@@ -12,3 +12,4 @@
 .log
 *.gem
 *.swp
+.idea

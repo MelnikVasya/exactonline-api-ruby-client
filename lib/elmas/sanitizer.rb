@@ -11,6 +11,7 @@ module Elmas
           next if key == :id || !valid_attribute?(key)
           key = Utils.parse_key(key)
           submit_value = sanitize_relationship(value)
+          next unless submit_value
           to_submit[key] = submit_value
         end
         to_submit

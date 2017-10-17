@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w(lib)
   spec.version       = Elmas::Version.to_s
 
-  spec.add_dependency "faraday", [">= 0.12.1"]
+  spec.add_dependency "faraday", ["~> 0.9"]
   spec.add_dependency "mechanize", ">= 2.7.5"
   spec.add_dependency "activesupport"
   spec.add_dependency "activeresource"

@@ -3,6 +3,12 @@ module Elmas
     # An account needs a name
     include Elmas::Resource
 
+    def save
+      super
+      @attributes[:id] ||= @response.result.first.id
+      @response
+    end
+
     def base_path
       "crm/Accounts"
     end

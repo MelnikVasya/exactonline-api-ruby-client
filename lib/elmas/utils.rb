@@ -37,11 +37,12 @@ module Elmas
     end
 
     def self.normalize_hash(hash)
-      Hash[hash.map { |k, v| [Utils.normalize_hash_key(k), v] }] if hash
+      hash ? Hash[hash.map { |k, v| [Utils.normalize_hash_key(k), v] }] : {}
     end
 
     def self.parse_key(key)
-      "VATCode" if key.casecmp "vat_code"
+      return "VATCode" if key.casecmp "vat_code"
+      return 'InvoiceID' if key.to_s == 'invoice_id'
       Utils.camelize(key)
     end
   end

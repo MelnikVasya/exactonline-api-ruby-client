@@ -2,6 +2,12 @@ module Elmas
   class Item
     include Elmas::Resource
 
+    def save
+      super
+      @attributes[:id] ||= @response.result.first.id
+      @response
+    end
+
     def base_path
       "logistics/Items"
     end

@@ -5,6 +5,17 @@ module Elmas
     include Elmas::Resource
     include Elmas::SharedSalesAttributes
 
+    def initialize(attributes = {})
+      super
+      @attributes[:id] ||= @attributes[:invoice_id] if @attributes[:invoice_id]
+    end
+
+    def save
+      super
+      @attributes[:id] ||= @response.result.first.invoice_id
+      @response
+    end
+
     def base_path
       "salesinvoice/SalesInvoices"
     end
