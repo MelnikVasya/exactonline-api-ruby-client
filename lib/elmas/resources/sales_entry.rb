@@ -4,6 +4,12 @@ module Elmas
     # It should also have a journal id and a contact id who ordered it
     include Elmas::Resource
 
+    def save
+      super
+      @attributes[:id] ||= @response.result.first.entry_id
+      @response
+    end
+
     def base_path
       "salesentry/SalesEntries"
     end
