@@ -4,6 +4,11 @@ module Elmas
     # It should also have a journal id and a contact id who ordered it
     include Elmas::Resource
 
+    def initialize(attributes = {})
+      super
+      @attributes[:id] ||= @attributes[:entry_id] if @attributes[:entry_id]
+    end
+
     def save
       super
       @attributes[:id] ||= @response.result.first.entry_id
