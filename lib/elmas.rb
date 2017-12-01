@@ -44,6 +44,7 @@ require "elmas/resources/vat_code"
 require "elmas/resources/general_journal_entry"
 require "elmas/resources/general_journal_entry_line"
 require "elmas/resources/payment_condition"
+require "patches/active_resource/threadsafe_attributes"
 
 module Elmas
   extend Config
